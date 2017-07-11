@@ -27,7 +27,7 @@ def progress(iterable, head=None, item_length=0, memory_usage=True, memory_avail
             message += (str(item)[:item_length] + '  ')
         if memory_usage:
             message += ('%.3f Gb used  ' % get_process_memory())
-        if memory_spare:
+        if memory_available:
             message += ('%.3f Gb available  ' % get_available_memory())
         sys.stdout.write('\r%s' % message.strip())
         
