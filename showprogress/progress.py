@@ -31,5 +31,5 @@ def progress(iterable, head=None, item_length=0, memory_usage=True, memory_avail
             message += ('%.3f Gb available  ' % get_available_memory())
         sys.stdout.write('\r%s' % message.strip())
         
-    print('done')
+    print('\r%sdone' % (head + ' ' if head else ''))
         
