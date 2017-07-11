@@ -15,6 +15,11 @@
     for item in progress(l, item_length=5):
         continue
 
+출력문에 message (head)를 넣고 싶으면 progress에 head를 넣으면 된다.
+
+    for item in progress(l, head='alphabet', item_length=5):
+        continue
+
 
 ## Install
 
