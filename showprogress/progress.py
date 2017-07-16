@@ -6,8 +6,14 @@ import sys
 import datetime
 
 def progress(iterable, head=None, item_length=0, memory_usage=True, memory_available=False, check_points=1, bar_character='#'):
+    def to_list(iterable):
+        items = [item for item in iterable]
+        return len(items), items
+    
     begin_time = time.time()
-    n = len(iterable)
+    if hasattr(iterable, '__len__'): n = len(iterable)
+    elif hasattr(iterable, 'shape'): n = iterable.shape[0]
+    else: n, iterable = to_list(iterable)
     
     for i, item in enumerate(iterable):
         yield item
@@ -31,5 +37,6 @@ def progress(iterable, head=None, item_length=0, memory_usage=True, memory_avail
             message += ('%.3f Gb available  ' % get_available_memory())
         sys.stdout.write('\r%s' % message.strip())
         
+    process_time = time.time() - begin_time
     print('\r%sdone. process time: %s' % (head + ' ' if head else '', datetime.timedelta(seconds=int(process_time))))
         
